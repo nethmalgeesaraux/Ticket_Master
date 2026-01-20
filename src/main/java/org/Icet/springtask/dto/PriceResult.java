@@ -9,6 +9,6 @@ import lombok.*;
 @ToString
 public class PriceResult {
 
-    private double price;
-    private boolean priorityAccess;
+    private double finalPrice;
+    private String message;
 }
