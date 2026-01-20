@@ -2,40 +2,39 @@ package org.Icet.springtask.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.Icet.springtask.enums.SeatStatus;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "seats")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Table(name = "seats")
 public class Seat {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    @Column(name="seat_number")
+    private String seatNumber;
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "event_id", nullable = false)
-        private Event event;
+    @Enumerated(EnumType.STRING)
+    private org.Icet.springtask.enums.SeatStatus status;
 
-        @Column(name = "seat_number", nullable = false)
-        private String seatNumber;
+    @Column(name="held_by_user_id")
+    private Long heldByUserId;
 
-        @Enumerated(EnumType.STRING)
-        @Column(nullable = false)
-        private SeatStatus status;
+    @Column(name="hold_expiry")
+    private LocalDateTime holdExpiry;
 
-        @Column(name = "held_by_user_id")
-        private Long heldByUserId;
+    @ManyToOne
+    @JoinColumn(name="event_id")
+    private Event event;
 
-        @Column(name = "hold_expiry")
-        private LocalDateTime holdExpiry;
 
-        @Version
-        private Long version;
+    @Version
+    @Column(name = "version", nullable = false)
+    private long version;
 }

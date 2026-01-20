@@ -14,6 +14,6 @@ import java.util.Optional;
 public interface SeatRepository extends JpaRepository<Seat,Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT s FROM Seat s WHERE s.id = :id")
+    @Query("select s from Seat s where s.id = :id")
     Optional<Seat> findByIdForUpdate(@Param("id") Long id);
 }
