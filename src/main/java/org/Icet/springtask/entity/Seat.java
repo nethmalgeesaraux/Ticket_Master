@@ -15,25 +15,27 @@ import java.time.LocalDateTime;
 @ToString
 public class Seat {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id")
-    private Event event;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "event_id", nullable = false)
+        private Event event;
 
-    private String seatNumber;
+        @Column(name = "seat_number", nullable = false)
+        private String seatNumber;
 
-    @Enumerated(EnumType.STRING)
-    private SeatStatus status;
+        @Enumerated(EnumType.STRING)
+        @Column(nullable = false)
+        private SeatStatus status;
 
-    @Column(name = "held_by_user_id")
-    private Long heldByUserId;
+        @Column(name = "held_by_user_id")
+        private Long heldByUserId;
 
-    @Column(name = "hold_expiry")
-    private LocalDateTime holdExpiry;
+        @Column(name = "hold_expiry")
+        private LocalDateTime holdExpiry;
 
-    @Version
-    private Long version;
+        @Version
+        private Long version;
 }

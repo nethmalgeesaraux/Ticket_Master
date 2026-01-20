@@ -18,13 +18,15 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "base_price")
+    @Column(name = "base_price", nullable = false)
     private double basePrice;
 
-    @Column(name = "is_high_demand")
+    @Column(name = "is_high_demand", nullable = false)
     private boolean isHighDemand;
 
+    @Column(name = "event_date", nullable = false)
     private LocalDate eventDate;
 }
