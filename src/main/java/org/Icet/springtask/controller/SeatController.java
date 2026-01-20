@@ -17,7 +17,8 @@ public class SeatController {
     private final SeatService seatService;
 
     @PostMapping("/{seatId}/hold")
-    public ResponseEntity<?> holdSeat(@PathVariable Long seatId, @RequestParam Long userId) {
+    public ResponseEntity<?> holdSeat(@PathVariable Long seatId,
+                                      @RequestParam Long userId) {
 
         try {
             Seat heldSeat = seatService.holdSeat(seatId, userId);
